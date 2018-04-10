@@ -1,0 +1,6 @@
+新增
+    ln TARGET DIRECTORY 實體連結
+    ln -s TARGET DIRECTORY 產生一個「DIRECTORY」連結檔連到「TARGET」
+搬移
+複製
+更名
