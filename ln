@@ -1,6 +1,13 @@
 新增
     ln TARGET DIRECTORY 實體連結
-    ln -s TARGET DIRECTORY 產生一個「DIRECTORY」連結檔連到「TARGET」
+    ln -s TARGET DIRECTORY 符號連結: 產生一個「DIRECTORY」連結檔連到「TARGET」
+刪除
+    實體連結
+        刪除 TARGET 後 DIRECTORY 「不影響」
+    符號連結
+        刪除 TARGET 後 DIRECTORY 「broken symbolic link」
 搬移
+    符號連結
+        搬移連結檔或實檔: 「broken symbolic link」，搬回來也是一樣。
 複製
 更名
