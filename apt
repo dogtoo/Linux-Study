@@ -1,0 +1,6 @@
+1. apt-get 安裝檔放的位置 /var/cache/apt/archives
+    apt-get clean 可以清空
+2. 找安裝好的apt
+    2-1 whereis $aptname
+    2-2 dpkg -l {$aptname} : 查清單顯示apt的版本
+    2-3 dpkg -L $aptname : apt安裝的檔案位置清單
