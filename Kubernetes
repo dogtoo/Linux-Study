@@ -1,0 +1,15 @@
+1. Cluster DNS
+2. Cluster Monitoring
+    InfluxDB, Grafana, Heapster
+3. Cluster Logging
+    Elasticsearch, Kibana, Fluentd
+4. Kube UI
+
+5. GuestBook
+6. kubernetes API
+    Pod, Replication Controller, Service, Endpoints, Events, Node, Namespace, Secret, ServiceAccount
+    PersistentVolume, PersistentVolumeClaim
+    LimitRange, ResourceQuota
+    Deployment, HorizontalPodAutoscaler, Ingress, Job, Daemonset
+7. 命令列工具 kubectl
+
