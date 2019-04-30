@@ -1,0 +1,14 @@
+sudo apt-get install vnc4server
+
+桌面
+sudo apt-get install xfce4
+sudo apt-get install xfce4-terminal
+
+vim xstartup 
+#x-window-manager &
+x-sesion-manager & xfdesktop & xfce4-panel &
+xfce4-menu-plugin &
+xfce4-terminal &
+xfsettingsd &
+xfconfd &
+xfwm4 &
