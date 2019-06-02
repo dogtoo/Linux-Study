@@ -1,0 +1,2 @@
+1. sudo apt install mdadm
+  如果已經有裝過，重開機後設定自已會找到 RAID硬碟
