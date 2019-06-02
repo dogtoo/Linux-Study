@@ -1,0 +1,4 @@
+1. get ALL UUID
+   ls -l /dev/disk/by-uuid/
+2. vi /etc/fstab
+  UUID=843C69B53C69A342 /home/dogtoo/xxxx ntfs-3g defaults 0 0
