@@ -1,0 +1,8 @@
+1. sudo apt-get install openssh-server
+2. vi /etc/ssh/sshd_config
+  PermitRootLogin No
+3. vi /etc/hosts.allow
+  sshd:192.168.1.88:allow
+4. vi /etc/hosts.deny
+  sshd:all:deny
+5. sudo /etc/init.d/ssh restart
