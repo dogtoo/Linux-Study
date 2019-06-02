@@ -1,0 +1,6 @@
+1. sudo apt-get install samba
+#2. sudo adduser smbuser --shell /bin/false #給別人用才要
+3. sudo smbpasswd -a $userNamme
+4. vi /etc/samba/smb.conf
+  設定在sd裡
+5. sudo service smbd restart 
