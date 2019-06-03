@@ -1,0 +1,10 @@
+https://www.imnobby.com/2017/09/20/%E6%96%BC-ubuntu-%E8%A8%AD%E5%AE%9A-lets-encrypt-%E5%85%8D%E8%B2%BB-ssl-%E7%B6%B2%E7%AB%99%E8%AD%89%E6%9B%B8/
+1. 安裝 certbot
+  sudo add-apt-repository ppa:certbot/certbot
+  sudo apt-get update
+  sudo apt-get install python-certbot-apache
+2. 網域申請及建立 SSL 證書
+  sudo certbot --apache -d dogtoo.mynetgear.com
+  開始問問題
+    email
+    
