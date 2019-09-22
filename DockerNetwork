@@ -1,0 +1,40 @@
+用iptables 把二個網段連起來
+
+引用 https://www.wencst.com/archives/787
+
+docker network create --driver bridge mynetwork1   
+docker network create --driver bridge mynetwork2
+然后我使用以下命令在每个创建的网络上运行了两个容器：
+
+docker run --net=mynetwork1 -it name=mynet1container1 mycontainerimage
+docker run --net=mynetwork1 -it name=mynet1container2 mycontainerimage
+docker run --net=mynetwork2 -it name=mynet2container1 mycontainerimage
+docker run --net=mynetwork2 -it name=mynet2container2 mycontainerimage
+然后，我从使用创建的网络中识别出每个容器的IP地址
+
+docker network inspect mynetwork1
+docker network inspect mynetwork2
+使用那些我能够在同一网络中的容器之间进行通信，但我无法通过网络在容器之间进行通信。只有通过将容器添加到同一网络才能进行通信。
+
+解决方法
+解决方案1：将一个容器连接到另一个网络。
+
+解决方案2：创建第三个网络并将两个容器插入此网络。
+
+该命令docker run只接受该选项的一次出现--net，您需要做的是docker start容器，然后docker network connect是共享网络。
+
+解决方案3：修改iptables，增加DOCKER-USER的数据链
+
+不同网络中的容器无法相互通信，因为iptables会丢弃此类数据包。这在过滤器表中的DOCKER-ISOLATION-STAGE-1和DOCKER-ISOLATION-STAGE-2链中显示。
+
+    sudo iptables -t filter -vL
+可以将规则添加到DOCKER-USER链以允许不同网络之间的通信。在上面的场景中，以下命令将允许mynetwork1中的任何容器与mynetwork2中的任何容器通信。
+
+需要首先找到网络的桥接接口名称（mynetwork1和mynetwork2）。它们的名称通常看起来像br-07d0d51191df或br-85f51d1cfbf6，可以使用命令“ifconfig”或“ip link show”找到它们。由于存在多个桥接接口，为了识别感兴趣的网络的正确接口，桥接接口的inet地址（如ifconfig所示）应与命令’docker network inspect mynetwork1’中显示的子网地址匹配
+
+    sudo iptables -I DOCKER-USER -i br-########1 -o br-########2 -j ACCEPT
+    sudo iptables -I DOCKER-USER -i br-########2 -o br-########1 -j ACCEPT
+可以对规则进行微调，以仅允许特定IP之间的通信。例如，
+
+    sudo iptables -I DOCKER-USER -i br-########1 -o br-########2 -s 172.17.0.2 -d 172.19.0.2 -j ACCEPT
+    sudo iptables -I DOCKER-USER -i br-########2 -o br-########1 -s 172.19.0.2 -d 172.17.0.2
