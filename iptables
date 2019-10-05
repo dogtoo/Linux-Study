@@ -1,0 +1,9 @@
+iptables -vL INPUT -n --line-numbers
+iptables -t filter -vL -n --line-numbers
+
+--verbose     -v              verbose mode
+--list        -L              [chain [rulenum]]
+--numeric     -n              numeric output of addresses and ports
+--line-numbers                print line numbers when listing
+
+INPUT | OUTPUT | ... <-- filter
