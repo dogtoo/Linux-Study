@@ -1,0 +1,8 @@
+-c：--bytes=N 指定輸出檔案最後的 "N" 個字元組。
+-n：--lines=N 指定輸出檔案最後 "N" 行。
+-f：持續顯示檔案更新的資訊。
+-q：--quiet, --silen 不輸出檔案名稱的訊息。
++n：從第n 行開始顯示到檔案結尾。
+
+tail -n fileName 10 最後十行
+tail -f fileName 持續顯示
