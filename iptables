@@ -5,5 +5,9 @@ iptables -t filter -vL -n --line-numbers
 --list        -L              [chain [rulenum]]
 --numeric     -n              numeric output of addresses and ports
 --line-numbers                print line numbers when listing
+--table       -t table        table to manipulate (default: `filter')
 
 INPUT | OUTPUT | ... <-- filter
+
+del one line number
+iptables -D [filter name] [x] 
