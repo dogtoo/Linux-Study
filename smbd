@@ -1,6 +1,19 @@
 1. sudo apt-get install samba
 #2. sudo adduser smbuser --shell /bin/false #給別人用才要
 3. sudo smbpasswd -a $userNamme
+  可以改用
+  管理 Samba 使用者是用 pdbedit 這個指令 , 參數满多 ,
+下面提列幾個簡單常用的參數 : (詳細使用方式請參考 man pdbedit)
+
+
+pdbedit -L # 列出使用者列表 .
+pdbedit -Lv # 列出詳細的使用者列表 .
+pdbedit -Lw # 列出同 smbpasswd 格式的使用者列表 .
+pdbedit -a user # 新增 user 這個帳號 .
+pdbedit -x user # 刪除 user 這個帳號 .
+pdbedit -c "[D]" -u user # 暫時停用 user 這個帳號 .
+pdbedit -c "[]" -u user # 恢復使用 user 這個帳號 .
+
 4. vi /etc/samba/smb.conf
   設定在sd裡
 5. sudo service smbd restart 
