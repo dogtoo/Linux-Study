@@ -1,0 +1,9 @@
+目錄佔用容量的大小
+
+du [OPTION]... [FILE]...
+
+-s, --summarize 只顯示總計
+
+-c, --total 增列一行 "總計"
+
+-h, --human-readable 以 K, M, G 為計量單位
