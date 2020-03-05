@@ -1,0 +1,8 @@
+timedatectl list-timezones | grep -i [zone]
+  ex: timedatectl list-timezones | grep -i asia or taipei
+sudo ln -s /usr/share/zoneinfo/[Zone/TimeZone] /etc/localtime  
+  ex: sudo ln -s /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+
+search
+ 1. timedatectl
+ 2. ls -l /etc/localtime
