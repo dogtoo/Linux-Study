@@ -11,3 +11,6 @@
 3. 利用system執行shell 指令
   ls -l -F | grep \/ | awk {'gsub("/","",$9); system("tar cfz "$9".tgz "$9)'}
   指令部份用字串圈起來，字串不用'+'
+
+4. grep 正則 + awk gsub
+echo nickel,sam, | grep -oE "\w*," | awk 'gsub(",","") {system("sudo usermod -aG docker "$0)}'
