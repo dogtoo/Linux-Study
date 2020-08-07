@@ -1,0 +1,110 @@
+How To Query Transaction Count in Oracle
+Post author:dbtutPost published:October 21, 2018Post category:ORACLEPost comments:0 Comments
+A script that you might need during database scaling. Calculation of transaction numbers between two specific dates.
+
+This script was tested in 11gR1 and 11gR2. Please test the scripts on your test servers before running them in the production environment.
+
+SELECT BEGIN_TIME,
+END_TIME,
+TXNCOUNT,
+( (END_TIME - BEGIN_TIME) * 24 * 60 * 60) DIFFSECOND,
+TO_CHAR ( (TXNCOUNT / ( (END_TIME - BEGIN_TIME) * 24 * 60 * 60)),
+'999999.99')
+TRANXPERSECOND
+FROM V$UNDOSTAT
+WHERE     BEGIN_TIME >= TO_DATE('20.09.2014 00:00','DD.MM.YYYY HH24:MI')
+AND BEGIN_TIME <= TO_DATE('25.09.2014 00:00','DD.MM.YYYY HH24:MI')
+AND (TXNCOUNT / ( (END_TIME - BEGIN_TIME) * 24 * 60 * 60)) > 50
+ORDER BY 1;
+
+SELECT BEGIN_TIME,
+END_TIME,
+TXNCOUNT,
+( (END_TIME - BEGIN_TIME) * 24 * 60 * 60) DIFFSECOND,
+TO_CHAR ( (TXNCOUNT / ( (END_TIME - BEGIN_TIME) * 24 * 60 * 60)),
+'999999.99')
+TRANXPERSECOND
+FROM V$UNDOSTAT
+WHERE     BEGIN_TIME >= TO_DATE('20.09.2014 00:00','DD.MM.YYYY HH24:MI')
+AND BEGIN_TIME <= TO_DATE('25.09.2014 00:00','DD.MM.YYYY HH24:MI')
+AND (TXNCOUNT / ( (END_TIME - BEGIN_TIME) * 24 * 60 * 60)) > 50
+ORDER BY 1;
+The following queries can be used to find the transaction count in the Oracle database.
+
+Average transaction count per day in Oracle
+SELECT V1          "Total Commits",
+       V2          "Total Rollbacks",
+       V3          "Total User Calls",
+       T1          "Uptime in days",
+       S1 / T1     "Avg Daily DML Transactions",
+       V3 / T1     "Avg Daily User Calls"
+  FROM (SELECT VALUE     V1
+          FROM V$SYSSTAT
+         WHERE NAME = 'user commits'),
+       (SELECT VALUE     V2
+          FROM V$SYSSTAT
+         WHERE NAME = 'user rollbacks'),
+       (SELECT SUM (VALUE)     S1
+          FROM V$SYSSTAT
+         WHERE NAME IN ('user commits', 'user rollbacks')),
+       (SELECT VALUE     V3
+          FROM V$SYSSTAT
+         WHERE NAME = 'user calls'),
+       (SELECT SYSDATE - STARTUP_TIME T1 FROM V$INSTANCE);
+
+SELECT V1          "Total Commits",
+       V2          "Total Rollbacks",
+       V3          "Total User Calls",
+       T1          "Uptime in days",
+       S1 / T1     "Avg Daily DML Transactions",
+       V3 / T1     "Avg Daily User Calls"
+  FROM (SELECT VALUE     V1
+          FROM V$SYSSTAT
+         WHERE NAME = 'user commits'),
+       (SELECT VALUE     V2
+          FROM V$SYSSTAT
+         WHERE NAME = 'user rollbacks'),
+       (SELECT SUM (VALUE)     S1
+          FROM V$SYSSTAT
+         WHERE NAME IN ('user commits', 'user rollbacks')),
+       (SELECT VALUE     V3
+          FROM V$SYSSTAT
+         WHERE NAME = 'user calls'),
+       (SELECT SYSDATE - STARTUP_TIME T1 FROM V$INSTANCE);
+Daily average commit count
+SELECT (V1 + V2) / T1 "Avg Daily DML Transactions",
+    V1 "User Commit",
+    V2 "User Rollback"
+  FROM (SELECT VALUE V1
+          FROM V$SYSSTAT
+         WHERE NAME = 'user commits'),
+       (SELECT VALUE V2
+          FROM V$SYSSTAT
+         WHERE NAME = 'user rollbacks'),
+       (SELECT SYSDATE - STARTUP_TIME T1 FROM V$INSTANCE);
+
+SELECT (V1 + V2) / T1 "Avg Daily DML Transactions",
+    V1 "User Commit",
+    V2 "User Rollback"
+  FROM (SELECT VALUE V1
+          FROM V$SYSSTAT
+         WHERE NAME = 'user commits'),
+       (SELECT VALUE V2
+          FROM V$SYSSTAT
+         WHERE NAME = 'user rollbacks'),
+       (SELECT SYSDATE - STARTUP_TIME T1 FROM V$INSTANCE);
+Transaction Count in the last 24 hours
+SELECT 'DATABASE',
+       'TOPLAM TRANSACTION - 24 SAAT',
+       TO_CHAR (MAX (NEXT_CHANGE#) - MIN (FIRST_CHANGE#), '9,999,999,999') VALUE
+  FROM V$LOG_HISTORY
+ WHERE TO_DATE (FIRST_TIME, 'DD/MM/RR HH24:MI:SS') > TRUNC (SYSDATE, 'HH24') - 1;
+
+SELECT 'DATABASE',
+       'TOPLAM TRANSACTION - 24 SAAT',
+       TO_CHAR (MAX (NEXT_CHANGE#) - MIN (FIRST_CHANGE#), '9,999,999,999') VALUE
+  FROM V$LOG_HISTORY
+ WHERE TO_DATE (FIRST_TIME, 'DD/MM/RR HH24:MI:SS') > TRUNC (SYSDATE, 'HH24') - 1;
+ 926 total views , 8 views today
+TAGS: AVERAGE TRANSACTION COUNT PER DAY, AVERAGE TRANSACTION COUNT PER DAY IN ORACLE, CHECK TRANSACTION COUNT, FIND TRANSACTION COUNT, FIND TRANSACTION COUNT IN ORACLE, ORACLE DAILY TRANSACTION COUNT, ORACLE GET TRANSACTION COUNT, ORACLE TRANSACTION COUNT, TRANSACTION COUNT IN A SPECIFIC INTERVAL, TRANSACTION COUNT IN ORACLE, TRANSACTION COUNT IN THE LAST 24 HOURS, TRANSACTION COUNT PER DAY IN ORACLE
+Read more articles
