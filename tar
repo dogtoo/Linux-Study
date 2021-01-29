@@ -1,0 +1,15 @@
+解壓縮:     tar -x[v]f tarfile.tar -C 解壓縮的位置/檔案名 (x excute;v verbose; f file)
+
+打包及壓縮: tar -c[v]f tarfile.tar -C 壓縮的位置/檔案名 (c create; v verbose; f file;)
+
+列出壓縮檔案的內容: tar -tvf tarfile.tar
+
+tar壓縮指令（以 gzip 進行）：
+tar c[v]zf /存放路徑/檔名.tar.gz /要打包的目錄
+
+壓縮檔解壓縮
+tar x[v]zf /壓縮檔所在/檔名.tar.gz -C /解壓縮路徑
+
+tar壓縮指令（以 bzip2 進行）： 副檔名為 tar.bz2
+
+將參數 z 換成 j
