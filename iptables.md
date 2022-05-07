@@ -1,3 +1,5 @@
+刪除iptables -L 的第幾行
+```
 iptables -vL INPUT -n --line-numbers
 iptables -t filter -vL -n --line-numbers
 
@@ -11,6 +13,7 @@ INPUT | OUTPUT | ... <-- filter
 
 del one line number
 iptables -D [filter name] [x] 
+```
 
 顯示連進32769 port的資訊
 ```
