@@ -35,6 +35,15 @@ DNS.1 = *.localhost
 DNS.2 = localhost
 IP.1 = 192.168.59.109
 ```
+生成CA证书时，需要提供一些公司信息。
+C表示国家，中国为CN。
+ST表示省，比如Sichuan。
+L表示城市，比如Chengdu。
+O表示公司，比如Ghostcloud Co.,Ltd。
+OU表示部门名字，比如Laboratory。
+CN表示公司域名，比如www.ghostcloud.cn。
+
+
 
 run openssl : gen ca key, cert
 ```
