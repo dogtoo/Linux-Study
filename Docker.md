@@ -19,3 +19,16 @@ ln  -s  /home/data/docker  /var/lib/docker  // 軟連線指向
 ```
 systemctl start docker
 ```
+
+## 開啟 Docker RESTful API 2375
+
+```
+sudo dockerd -H unix:///var/run/docker.sock -H tcp://192.168.59.106 &
+```
+
+#2376 還沒測過
+```
+openssl x509 -req -days 365 -sha256 -in client.csr -CA ca.pem -CAkey ca-key.pem   -CAcreateserial -out cert.pem -extfile extfile-client.cnf
+chmod -v 0400 ca-key.pem key.pem server-key.pem
+sudo dockerd --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=0.0.0.0:2376
+```
