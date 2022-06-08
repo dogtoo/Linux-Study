@@ -26,9 +26,14 @@ systemctl start docker
 sudo dockerd -H unix:///var/run/docker.sock -H tcp://192.168.59.106 &
 ```
 
-#2376 還沒測過
+# 2376 還沒測過
+
+server 端
 ```
 openssl x509 -req -days 365 -sha256 -in client.csr -CA ca.pem -CAkey ca-key.pem   -CAcreateserial -out cert.pem -extfile extfile-client.cnf
 chmod -v 0400 ca-key.pem key.pem server-key.pem
 sudo dockerd --tlsverify --tlscacert=ca.pem --tlscert=server-cert.pem --tlskey=server-key.pem -H=0.0.0.0:2376
 ```
+
+client 端
+???
