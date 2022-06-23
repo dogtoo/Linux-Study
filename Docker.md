@@ -26,6 +26,13 @@ systemctl start docker
 sudo dockerd -H unix:///var/run/docker.sock -H tcp://192.168.59.106 &
 ```
 
+## 開啟2375後如何刪除
+```
+sudo kill ${dockerd sudo pid}
+or 刪除在背景程式
+sudo kill --SIGHUP ${dockerd pid}
+```
+
 # 2376 還沒測過
 
 server 端
