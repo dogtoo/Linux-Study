@@ -23,7 +23,12 @@ systemctl start docker
 ## 開啟 Docker RESTful API 2375
 
 ```
+sudo service docker stop # docker要先停，起完dockerd時會自動啟
 sudo dockerd -H unix:///var/run/docker.sock -H tcp://192.168.59.106 &
+```
+
+```
+docker 因為會固定連socket，如果沒有0.0.0.0 就要設 export DOCKER_HOST="tcp://192.168.59.124:2375"
 ```
 
 ## 開啟2375後如何刪除
