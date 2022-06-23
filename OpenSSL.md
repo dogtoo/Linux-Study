@@ -50,3 +50,10 @@ run openssl : gen ca key, cert
 ```
 openssl req -x509 -new -nodes -sha256 -utf8 -days 3650 -newkey rsa:2048 -keyout server.key -out server.cert -config ssl.conf
 ```
+
+4. 在本機手動加ca.crt( ca.cert,ca.pem 是相同的，指的是 BEGIN CERTIFICATE那段)
+將對方server的憑證先放到 /usr/local/share/ca-certificates
+執行 sudo update-ca-certificates
+檢核 /etc/ssl/certs/ca-certificates.crt 是不是有加入新ca
+
+ 
