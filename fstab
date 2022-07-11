@@ -4,3 +4,5 @@
   UUID=843C69B53C69A342 /home/dogtoo/xxxx ntfs-3g defaults 0 0
 3. nfs 伺服找可掛載
   showmount -e [ip]
+4. 手動掛載fstab
+  sudo mount -a
