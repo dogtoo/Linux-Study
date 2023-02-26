@@ -14,3 +14,6 @@
 
 4. grep 正則 + awk gsub
 echo nickel,sam, | grep -oE "\w*," | awk 'gsub(",","") {system("sudo usermod -aG docker "$0)}'
+
+5. ls 出檔案後 更改所有檔案副檔名
+ls -l -F | grep -oE "[0-9][0-9][0-9].part" | awk '{system("mv "$0" "$0".avi")}'
