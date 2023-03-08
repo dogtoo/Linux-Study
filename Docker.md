@@ -115,3 +115,5 @@ Containers: 41 Running: 16 Paused: 0 Stopped: 25 Images: 821 Server Version: 1.1
 
 11. 要login 到私人儲存庫時，要做金鑰的管理
 https://github.com/docker/docker-credential-helpers 需要使用pass套件
+
+https://gist.github.com/dataday/3c267be29e32573829c4781c99ea3395 更細的內容
