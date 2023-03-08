@@ -112,3 +112,6 @@ docker --tlsverify --tlscacert=~/docker/ca.pem --tlscert=~/docker/client-cert.pe
 ```
 Containers: 41 Running: 16 Paused: 0 Stopped: 25 Images: 821 Server Version: 1.10.3
 ```
+
+11. 要login 到私人儲存庫時，要做金鑰的管理
+https://github.com/docker/docker-credential-helpers 需要使用pass套件
