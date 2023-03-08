@@ -120,7 +120,7 @@ https://www.sobyte.net/post/2022-06/docker-credential/
 https://gist.github.com/dataday/3c267be29e32573829c4781c99ea3395 更細的內容
 
 sudo apt install gnupg2 pass 或是直接install
-gnupg
+gnupg2
 https://ubuntu.pkgs.org/20.04/ubuntu-main-amd64/gnupg_2.2.19-3ubuntu2_all.deb.html
 pass
 https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/libqrencode3_3.4.4-1build1_amd64.deb.html
