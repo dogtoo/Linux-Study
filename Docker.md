@@ -129,3 +129,16 @@ https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/pass_1.7.1-3_all.deb.html
 https://ubuntu.pkgs.org/18.04/ubuntu-universe-amd64/qrencode_3.4.4-1build1_amd64.deb.html
 https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xclip_0.12+svn84-4build1_amd64.deb.html
 
+
+12. 推上nexus
+
+docker tag ${imagename:version} ${domain}/${imagename:version}
+docker login ${nexus url} -u ${user} --password-stdin
+docker push ${domain}/${imagename:version}
+
+13. 下載image並放到無網路環境
+
+docker pull ${imagename}
+docker save -o ${file}.tar ${imagename}
+docker image load -i ${file}.tar
+
