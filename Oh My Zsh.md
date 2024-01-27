@@ -1,14 +1,14 @@
 Oh My Zsh
 
 1. 本篇文章會安裝以下套件：
-Zsh
-Oh My Zsh
-Powerlevel10k 主題
-zsh-autosuggestions
-zsh-syntax-highlighting
-Zsh-z
+* 1-1. Zsh
+* 1-2. Oh My Zsh
+* 1-3. Powerlevel10k 主題
+* 1-4. zsh-autosuggestions
+* 1-5. zsh-syntax-highlighting
+* 1-6. Zsh-z
 
-2. 安裝 必要的套件
+## 2. 安裝 必要的套件
 sudo apt install wget git curl vim -y
 
 3. 安裝 Patched 字型(連線端)
