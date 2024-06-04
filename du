@@ -22,6 +22,10 @@ du -shc ./*
 顯示往下最多 2 層的各目錄 size
 du -h -d 2 .
 
+檔案數
+find ./ -type f -name *.*| wc -l
+find ./ -type f | wc -l
+
 根據 size 由大到小排序
 du -h -d 1 . | sort -hr
 sort -r 是倒序顯示的意思。
