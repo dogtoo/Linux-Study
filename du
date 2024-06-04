@@ -7,3 +7,22 @@ du [OPTION]... [FILE]...
 -c, --total 增列一行 "總計"
 
 -h, --human-readable 以 K, M, G 為計量單位
+
+-d, 指定往下的目錄層數
+
+顯示當前目錄的總大小
+du -sh .
+
+顯示當前目錄底下各檔案資料夾的 size
+du -sh ./*
+
+最後多顯示一個 total 值
+du -shc ./*
+
+顯示往下最多 2 層的各目錄 size
+du -h -d 2 .
+
+根據 size 由大到小排序
+du -h -d 1 . | sort -hr
+sort -r 是倒序顯示的意思。
+sort -h 是指以數字化 (numerical) 判讀排序，而非字母。
