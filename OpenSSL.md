@@ -57,3 +57,21 @@ openssl req -x509 -new -nodes -sha256 -utf8 -days 3650 -newkey rsa:2048 -keyout 
 檢核 /etc/ssl/certs/ca-certificates.crt 是不是有加入新ca
 
  
+==========================================
+gca 憑證
+
+1. 產生請求檔
+```
+openssl genrsa -des3 -out server.key 2048 
+openssl req -new -key server.key -out certreq.txt -config ssl.conf
+```
+2. 交由gca申請人將 certreq.txt (CSR) 上傳，並告知簽章的domain
+3. 申請成功後取得 server.cer (CER)
+4. 將 cer 轉成 crt
+```
+openssl x509 -in server.cer -out server.cert -inform der
+```
+5. 與gca的中間憑證合併，中間憑證要放後面
+```
+cat server.cert ../eCA1_GTLSCA.crt > server.pem
+```
