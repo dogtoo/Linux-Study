@@ -6,3 +6,29 @@
 4. vi /etc/hosts.deny
   sshd:all:deny
 5. sudo /etc/init.d/ssh restart
+
+
+# 憑證登入(免密碼登入)。A電腦要登入B
+
+## 在A電腦
+1. 產生金鑰，產生 id_rsa 及 id_rsa.pub 檔案，預設目錄為 ~/.ssh。會詢問密碼，若要做免密碼登入直接按ENTER
+```
+ssh-keygen
+```
+2. 將公鑰 id_rsa.pub 複製到 B電腦，透過目前可處理的方式將 id_rsa.pub 移至 B電腦的 ~/.ssh 下
+
+## B電腦
+3. 將 id_rsa.pub 更改檔名為 authorized_keys，若 authorized_keys已存在，則將 id_rsa.pub 的內容加到 authorized_keys 後面
+```
+cat .ssh/id_rsa.pub >> .ssh/authorized_keys
+```
+4. 加入 know_hosts
+```
+ssh-keyscan -H A電腦IP >> ~/.ssh/known_hosts
+```
+5. 確認.ssh權限
+```
+chmod 700 .ssh/
+chmod 644 .ssh/authorized_keys 
+```
+
