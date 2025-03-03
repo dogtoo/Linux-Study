@@ -1,3 +1,15 @@
+## docker compose 自建network 並加入 bridage裡
+```
+networks:
+  proxy:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+  bridge:
+    external: true
+```
+
 ## 修改Docker本地映象與容器的儲存位置的方法
 
 預設 Docker 的存放位置
